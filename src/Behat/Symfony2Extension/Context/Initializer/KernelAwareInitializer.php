@@ -44,10 +44,7 @@ final class KernelAwareInitializer implements ContextInitializer, EventSubscribe
      */
     public static function getSubscribedEvents()
     {
-        return array(
-            ScenarioTested::AFTER  => array('rebootKernel', -15),
-            ExampleTested::AFTER   => array('rebootKernel', -15),
-        );
+        return [];
     }
 
     /**
@@ -60,15 +57,6 @@ final class KernelAwareInitializer implements ContextInitializer, EventSubscribe
         }
 
         $context->setKernel($this->kernel);
-    }
-
-    /**
-     * Reboots HttpKernel after each scenario.
-     */
-    public function rebootKernel()
-    {
-        $this->kernel->shutdown();
-        $this->kernel->boot();
     }
 
     /**
